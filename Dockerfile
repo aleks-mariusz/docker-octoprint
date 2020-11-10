@@ -1,15 +1,12 @@
 FROM balenalib/rpi-alpine-python:2.7.16-3.9-build as build
 
-ARG OCTOPRINT_VERSION=1.4.0
-ARG PYBONJOUR_URL=https://goo.gl/SxQZ06
-ARG PYBONJOUR_VER=1.1.1
+ARG OCTOPRINT_VERSION=1.4.2
 
 RUN set -xe \
     \
     && apk update \
     && apk upgrade \
     && apk add \
-        avahi-compat-libdns_sd \
         build-base \
         cmake \
         lapack \
@@ -24,9 +21,6 @@ RUN wget -qO- https://github.com/jacksonliam/mjpg-streamer/archive/master.tar.gz
     && make \
     && make install
 
-RUN wget -qO- $PYBONJOUR_URL > pybonjour-$PYBONJOUR_VER.tar.gz \
-    && pip install pybonjour-$PYBONJOUR_VER.tar.gz
-
 RUN wget -qO- https://github.com/foosel/OctoPrint/archive/$OCTOPRINT_VERSION.tar.gz \
       | tar xz \
     && cd /OctoPrint-$OCTOPRINT_VERSION \
@@ -35,14 +29,14 @@ RUN wget -qO- https://github.com/foosel/OctoPrint/archive/$OCTOPRINT_VERSION.tar
 
 RUN pip --version \
     && pip install https://github.com/amsbr/OctoPrint-EEPROM-Marlin/archive/master.zip \
-    && pip install https://github.com/BillyBlaze/OctoPrint-TouchUI/archive/master.zip \
     && pip install https://github.com/bradcfisher/OctoPrint-ExcludeRegionPlugin/archive/master.zip \
     && pip install https://github.com/birkbjo/OctoPrint-Themeify/archive/master.zip \
-    && pip install https://github.com/FormerLurker/Octolapse/archive/v0.3.4.zip \
+    && pip install https://github.com/FormerLurker/Octolapse/archive/v0.4.0.zip \
     && pip install https://github.com/google/OctoPrint-HeaterTimeout/archive/master.zip \
-    && pip install https://github.com/houseofbugs/OctoPrint-ExtraDistance/archive/master.zip \
+    && pip install https://github.com/ntoff/OctoPrint-ExtraDistance/archive/master.zip \
     && pip install https://github.com/ieatacid/OctoPrint-GcodeEditor/archive/master.zip \
     && pip install https://github.com/imrahil/OctoPrint-NavbarTemp/archive/master.zip \
+    && pip install https://github.com/jneilliii/OctoPrint-AutoTerminalInput/archive/master.zip \
     && pip install https://github.com/jneilliii/OctoPrint-BedLevelVisualizer/archive/master.zip \
     && pip install https://github.com/jneilliii/OctoPrint-BLTouch/archive/master.zip \
     && pip install https://github.com/jneilliii/OctoPrint-FloatingNavbar/archive/master.zip \
@@ -61,15 +55,12 @@ COPY --from=build /OctoPrint-* /opt/octoprint
 RUN set -xe \
     \
     && apk --no-cache add \
-        avahi \
-        avahi-compat-libdns_sd \
         avrdude \
         ffmpeg \
         haproxy \
         lapack \
         libjpeg \
-    && pip --no-cache-dir install supervisor \
-    && sed -i 's/#enable-dbus=yes/enable-dbus=no/g' /etc/avahi/avahi-daemon.conf
+    && pip --no-cache-dir install supervisor
 
 VOLUME /data
 WORKDIR /data
