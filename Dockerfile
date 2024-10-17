@@ -60,8 +60,7 @@ RUN pip --version \
     && pip install https://github.com/jneilliii/OctoPrint-AutoTerminalInput/archive/$OCTOPRINT_PLUGIN_AUTOTERMINALINPUT_VERSION.zip \
     && pip install https://github.com/FormerLurker/Octolapse/archive/v$OCTOPRINT_PLUGIN_OCTOLAPSE_VERSION.zip \
     && pip install https://github.com/jneilliii/OctoPrint-TabOrder/archive/$OCTOPRINT_PLUGIN_TABORDER_VERSION.zip \
-    && pip install https://github.com/birkbjo/OctoPrint-Themeify/archive/v$OCTOPRINT_PLUGIN_THEMIFY_VERSION.zip \
-    && pip install https://github.com/jneilliii/OctoPrint-TPLinkSmartplug/archive/master.zip
+    && pip install https://github.com/birkbjo/OctoPrint-Themeify/archive/v$OCTOPRINT_PLUGIN_THEMIFY_VERSION.zip
 
 FROM balenalib/rpi-alpine-python:3.7.16-3.16-run
 
