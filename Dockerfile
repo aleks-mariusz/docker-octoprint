@@ -8,7 +8,7 @@ ARG OCTOPRINT_PLUGIN_BLTOUCH_VERSION=0.3.4
 ARG OCTOPRINT_PLUGIN_EEPROMMARLIN_VERSION=3.3.0
 ARG OCTOPRINT_PLUGIN_ESTOP_VERSION=master
 ARG OCTOPRINT_PLUGIN_EXCLUDEREGION_VERSION=0.3.2
-ARG OCTOPRINT_PLUGIN_EXTRADISTANCE_VERSION=master
+ARG OCTOPRINT_PLUGIN_EXTRADISTANCE_VERSION=0.1.1
 ARG OCTOPRINT_PLUGIN_FIRMWAREUPDATER_VERSION=1.14.1
 ARG OCTOPRINT_PLUGIN_FLOATINGNAVGAR_VERSION=0.3.7
 ARG OCTOPRINT_PLUGIN_GCODEEDITOR_VERSION=0.2.14
@@ -49,7 +49,7 @@ RUN pip --version \
     && pip install https://github.com/cp2004/OctoPrint-EEPROM-Marlin/archive/$OCTOPRINT_PLUGIN_EEPROMMARLIN_VERSION.zip \
     && pip install https://github.com/ntoff/OctoPrint-Estop/archive/$OCTOPRINT_PLUGIN_ESTOP_VERSION.zip \
     && pip install https://github.com/bradcfisher/OctoPrint-ExcludeRegionPlugin/archive/$OCTOPRINT_PLUGIN_EXCLUDEREGION_VERSION.zip \
-    && pip install https://github.com/ntoff/OctoPrint-ExtraDistance/archive/$OCTOPRINT_PLUGIN_EXTRADISTANCE_VERSION.zip \
+    && pip install https://github.com/scmanjarrez/OctoPrint-ExtraDistance/archive/$OCTOPRINT_PLUGIN_EXTRADISTANCE_VERSION.zip \
     && pip install https://github.com/OctoPrint/OctoPrint-FirmwareUpdater/archive/$OCTOPRINT_PLUGIN_FIRMWAREUPDATER_VERSION.zip \
     && pip install https://github.com/jneilliii/OctoPrint-FloatingNavbar/archive/$OCTOPRINT_PLUGIN_FLOATINGNAVGAR_VERSION.zip \
     && pip install https://github.com/ieatacid/OctoPrint-GcodeEditor/archive/$OCTOPRINT_PLUGIN_GCODEEDITOR_VERSION.zip \
